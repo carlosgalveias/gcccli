@@ -1,0 +1,19 @@
+{
+  "name": "gccli",
+  "version": "0.0.1",
+  "description": "Command line utility to create google could function project",
+  "main": "bin/gccli",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Carlos Galveias",
+  "license": "ISC",
+  "devDependencies": {
+    "autocmdr": "0.0.8",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "fs-extra": "^0.30.0",
+    "inquirer": "^1.1.2",
+    "lodash": "^4.13.1"
+  }
+}
