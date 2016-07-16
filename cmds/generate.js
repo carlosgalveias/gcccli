@@ -41,7 +41,7 @@ module.exports = function(program) {
         // read template
         let template = fs.readFileSync(path.join(__dirname, '..', 'templates', `${item}.js`), 'utf8');
         // replace values
-        template = template.replace(/\{\{templatename\}\}/g, name);
+        template = template.replace(/templatename/g, name);
 
         if (item === 'router') {
             fs.writeFileSync(`./${item}s/${name}-id.js`, template, 'utf8');
