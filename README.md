@@ -24,9 +24,32 @@ $ npm install -g gccli
 
 ```node ./bin/gccli --help```
 
+## Configure
+
+On your project/config folder you can set all your configuration settings for database/etc.
+Follow gcloud instructions to connect to your account and project.
+
 ## Usage
 
-To create a new project
+To create a new project do 'gccli new' and follow instructions. It will create a new folder from where you run the command with the application
+To generate you can do 'gccli generate <model|route|function> name'
+To deploy the router do 'gccli deploy api'
+To deploy a function do 'gccli deploy function <function-name> <trigger>'
+
+To test run 'npm test'
+To check test coverage do 'npm run coverage'
+
+## Conventions
+
+If you don't like strong conventions GET OUT OF HERE!! , just kiddin. 
+Yes , this application is very oppiniated and insipired by ember-data. The generic route expects models named the same way , etc.
+
+Ex:
+Find	GET	api/photos/123
+Find All	GET	api/photos
+Update	PUT	/api/photos/123
+Create	POST	api/photos
+Delete	DELETE	api/photos/123
 
 ## License
 
@@ -36,3 +59,5 @@ Copyright (c) 2016 Carlos Galveias (www.codethencloud.com)
 
 ## Acknowledgments
 Built using [generator-commader](https://github.com/Hypercubed/generator-commander).
+Google (for awesome cloud infrastructure)
+Ember and Ember-data (Inspired on their conventions and the 'ember' way)
