@@ -44,14 +44,14 @@ To check test coverage do 'npm run coverage'
 
 If you don't like strong conventions GET OUT OF HERE!! , just kiddin. 
 Yes , this application is very oppiniated and insipired by ember-data. The generic route expects models named the same way , etc.
+Models are pluralized, you you are handling a photo , the model is 'photos' and that will also be the route.
 
 Ex:
-
-Find	GET	api/photos/123
-Find All	GET	api/photos
-Update	PUT	/api/photos/123
-Create	POST	api/photos
-Delete	DELETE	api/photos/123
+* Find	GET	api/photos/123
+* Find All	GET	api/photos
+* Update	PUT	/api/photos/123
+* Create	POST	api/photos
+* Delete	DELETE	api/photos/123
 
 ## License
 
