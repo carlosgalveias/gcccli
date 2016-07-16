@@ -53,6 +53,26 @@ Ex:
 * Create	POST	api/photos
 * Delete	DELETE	api/photos/123
 
+Response will be in JSON format, ex:
+
+```javascript
+{
+  "post": {
+    "id": 1,
+    "title": "Rails is omakase",
+    "comments": ["1", "2"],
+    "user" : "dhh"
+  },
+
+  "comments": [{
+    "id": "1",
+    "body": "Rails is unagi"
+  }, {
+    "id": "2",
+    "body": "Omakase O_o"
+  }]
+}
+```
 ## License
 
 Copyright (c) 2016 Carlos Galveias (www.codethencloud.com)
