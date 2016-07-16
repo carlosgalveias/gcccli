@@ -1,0 +1,27 @@
+runtime: nodejs
+vm: true
+service: default
+threadsafe: false
+
+resources:
+  cpu: .2
+  memory_gb: 0.5
+  disk_size_gb: 10
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 5
+  cool_down_period_sec: 120 # default value
+  cpu_utilization:
+    target_utilization: 0.8
+
+health_check:
+  enable_health_check: True
+  check_interval_sec: 5
+  timeout_sec: 4
+  unhealthy_threshold: 2
+  healthy_threshold: 2
+  restart_threshold: 60
+
+skip_files:
+  - ^(.*/)?.*/node_modules/.*$

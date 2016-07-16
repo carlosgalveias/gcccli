@@ -79,6 +79,7 @@ module.exports = function(program) {
                                 version: '0.0.0',
                                 description: answers.applicationDescription,
                                 private: true,
+                                start: 'api/api.js',
                                 scripts: {
                                     test: 'node node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- flows/**/*.spec.js tasks/**/*.spec.js'
                                 },

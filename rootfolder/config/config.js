@@ -10,5 +10,9 @@ module.exports = function() {
             password: 'dbpass',
             database: 'database'
         },
+        google: {
+          project: '',
+          bucket: ''
+        }
     };
 };
