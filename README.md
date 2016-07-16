@@ -32,7 +32,7 @@ Follow gcloud instructions to connect to your account and project.
 ## Usage
 
 To create a new project do 'gccli new' and follow instructions. It will create a new folder from where you run the command with the application
-To generate you can do 'gccli generate <model|route|function> name'
+*To generate you can do 'gccli generate <model|route|function> name'
 To deploy the router do 'gccli deploy api'
 To deploy a function do 'gccli deploy function <function-name> <trigger>'
 
