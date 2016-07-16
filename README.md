@@ -36,6 +36,7 @@ Follow gcloud instructions to connect to your account and project.
 * To generate you can do 'gccli generate <model|route|function> name'
 * To deploy the router do 'gccli deploy api'
 * To deploy a function do 'gccli deploy function <function-name> <trigger>'
+* To deploy all functions do 'gccli deploy functions'
 
 To test run 'npm test'
 To check test coverage do 'npm run coverage'
@@ -52,6 +53,10 @@ Ex:
 * Update	PUT	/api/photos/123
 * Create	POST	api/photos
 * Delete	DELETE	api/photos/123
+
+
+* Routes are already generically handled but can be overrided, the naming format needs to be '{routename.js}' and '{routename-id.js}'
+* Functions can be either http or by pub/sub topic. http funcitons are named as 'http-{functionname}' and others as 'pub-{functionname}'.
 
 Response will be in JSON format, ex:
 
