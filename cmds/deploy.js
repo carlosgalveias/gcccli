@@ -2,8 +2,14 @@
  * To use add require('../cmds/deploy.js')(program) to your commander.js based node executable before program.parse
  */
 'use strict';
-var fs = require('fs');
-var cfg = require('config/config.js');
+var cwd = process.cwd();
+var path = require('path');
+var fs = require('fs-extra');
+try{
+var cfg = require(path.join(cwd, 'config/config.js'))().google;
+} catch(e){
+  //
+}
 var execSync = require('child_process').execSync;
 require('colors');
 module.exports = function(program) {
@@ -12,9 +18,6 @@ module.exports = function(program) {
         .version('0.0.0')
         .description('Deploys your code to google')
         .action(function(item) {
-            var path = require('path');
-
-            var cwd = process.cwd();
             if (item === 'functions') {
                 fs.readdirSync(path.join(cwd, 'functions')).forEach(function(file) {
                     var module = file.replace('.js', '');
@@ -25,9 +28,34 @@ module.exports = function(program) {
                 });
 
             } else if (item === 'api') {
-                var cmd = 'gcloud app deploy';
-                execSync(cmd);
-                console.log('Done');
+                console.log(cfg);
+                if (!cfg.project) {
+                    return console.log('You need to set the google project setting first');
+                }
+                if (!fs.existsSync(path.join(cwd, 'dist'))) {
+                    fs.mkdirSync(path.join(cwd, 'dist'));
+                }
+
+                // copy our main files to dist
+                fs.walk(cwd)
+                    .on('data', function(item) {
+                        if ((/dist/).test(item.path) || (/\.git/).test(item.path) || (/node_modules/).test(item.path)) {
+                            return;
+                        }
+                        var baseItem = item.path.replace(cwd, '');
+                        if (baseItem) {
+                            fs.copySync(item.path, path.join(cwd, 'dist', baseItem));
+                        }
+                    })
+                    .on('end', function() {
+                        process.chdir(path.join(cwd, 'dist'));
+                        console.log('Deploying...');
+                        execSync('gcloud config set project ' + cfg.project);
+                        execSync('gcloud app deploy');
+                        console.log('Done'.green);
+                        process.chdir(cwd);
+                    });
+
             }
         });
 };

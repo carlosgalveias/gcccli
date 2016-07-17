@@ -24,7 +24,7 @@ var config = {
     adapters: {},
     connections: {},
     defaults: {
-        migrate: 'drop' // drop will create the db from fresh, you need to change to 'safe' once your stuff is all set
+        migrate: cfg.db.migrate
     }
 };
 
