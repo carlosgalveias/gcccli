@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Command line utility to create google could function project",
   "main": "bin/gccli",
-  "scripts": {
-    "test": "npm test"
+  "bin": {
+    "gccli": "bin/gccli"
   },
   "author": "Carlos Galveias",
   "license": "ISC",
