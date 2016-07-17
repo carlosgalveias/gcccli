@@ -14,8 +14,8 @@ const inquirer = require('inquirer');
 module.exports = function(program) {
 
     /**
-     * Creates the specified cirrus scaffold
-     * @param  {String} item Type of item like task or Router
+     * Creates the specified scaffold
+     * @param  {String} item Type of item like model, router or function
      * @param  {String} name Given name from user
      * @param  {String} desc Given description from user
      * @return {Void}
@@ -64,7 +64,7 @@ module.exports = function(program) {
         .version('0.0.0'.bold)
         .description('A template generator for the gccli')
         .action(function(item) {
-            // check if current dir is a cirrus project
+            // check if current dir is a gccli project
             if (!fs.existsSync('./gccli.json')) {
                 throw new Error('Please run this command inside a gccli project.'.red.bold);
             }

@@ -16,7 +16,7 @@ module.exports = function(program) {
         .version('0.0.0')
         .description('Creates a new Google Cloud Functions Project')
         .action(function() {
-            // Check if current directory is already a cirrus package
+            // Check if current directory is already a gccli package
             if (fs.existsSync('gccli.json')) {
                 throw new Error('You need to create a project in a clean folder.');
             }
