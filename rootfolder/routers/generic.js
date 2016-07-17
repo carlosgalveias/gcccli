@@ -9,7 +9,7 @@ var pluralize = require('pluralize');
  * or simply do something after the data is collected.
  * ex:
  *
- * var template = require('./global.js');
+ * var template = require('./generic.js');
  * var customController = require('../controllers/customController.js');
  * var customRoute = {}; // our custom router, not a reference
  * customRoute.get = template.get;

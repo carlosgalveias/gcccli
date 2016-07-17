@@ -2,6 +2,10 @@
 
 module.exports = function() {
     return {
+        api: {
+          port: 8080,
+          type: 'gae' // for now google does not support routing so only gae is possible for the api 
+        },
         db: {
             adapter: 'sails-memory',
             server: '0.0.0.0',

@@ -2,7 +2,7 @@
 var express = require('express'); // call express
 var path = require('path');
 var bodyParser = require('body-parser');
-
+var cfg = require('../config/config.js')();
 // We need our db too
 var models = require('../models');
 
@@ -31,7 +31,7 @@ models.waterline.initialize(models.config, function(err, models) {
 });
 
 
-var port = process.argv[2] ? process.argv[2] : 8080; // set our port
+var port = cfg.api.port; // set our port
 
 console.log(process.argv);
 // ROUTES FOR OUR API
@@ -49,7 +49,7 @@ router.all('/*/:id', function(req, res) {
   try {
     model = require(path.join(__dirname, '../routers', modelname + '-id.js')); // Loads any specific router model if any
   } catch (err) {
-    model = require(path.join(__dirname, '../routers', 'global.js')); // Loads the generic one
+    model = require(path.join(__dirname, '../routers', 'generic.js')); // Loads the generic one
   }
   try {
     model[method](req, ret => {
@@ -71,7 +71,7 @@ router.all('/*', function(req, res) {
     model = require(path.join(__dirname, '../routers', component + '.js'));
 
   } catch (err) {
-    model = require(path.join(__dirname, '../routers', 'global.js')); // Loads the generic one
+    model = require(path.join(__dirname, '../routers', 'generic.js')); // Loads the generic one
   }
   try {
     model[method](req, ret => {
