@@ -31,21 +31,18 @@ Follow gcloud instructions to connect to your account and project.
 
 ## Usage
 
-* To create a new project do 'gccli new' and follow instructions.
+* To create a new project do 'gccli new' and follow instructions.  
   It will create a new folder from where you run the command with the application
 * To generate you can do 'gccli generate <model|route|function> name'
 * To deploy the router do 'gccli deploy api'
 * To deploy a function do 'gccli deploy function <function-name> <trigger>'
 * To deploy all functions do 'gccli deploy functions'
 
-To test run 'npm test'
-To check test coverage do 'npm run coverage'
-
 ## Conventions
 
-If you don't like strong conventions GET OUT OF HERE!! , just kiddin. 
+If you don't like strong conventions GET OUT OF HERE!! , just kiddin.  
 Yes , this application is very oppiniated and insipired by ember-data. The generic route expects models named the same way , etc.
-Models are pluralized, you you are handling a photo , the model is 'photos' and that will also be the route.
+Models are pluralized, so if you want to handle a photo , the model is 'photos' and that will also be the route.
 
 Ex:
 * Find	GET	api/photos/123
@@ -55,8 +52,8 @@ Ex:
 * Delete	DELETE	api/photos/123
 
 
-* Routes are already generically handled but can be overrided, the naming format needs to be '{routename.js}' and '{routename-id.js}'
-* Functions can be either http or by pub/sub topic. http funcitons are named as 'http-{functionname}' and others as 'pub-{functionname}'.
+Routes are already generically handled but can be overrided, the naming format needs to be '{routename.js}' and '{routename-id.js}'.  
+Functions can be either http or by pub/sub topic. http funcitons are named as 'http-{functionname}' and others as 'pub-{functionname}'.  
 
 Response will be in JSON format, ex:
 
@@ -78,13 +75,42 @@ Response will be in JSON format, ex:
   }]
 }
 ```
+
+## Quick Example
+
+1) set up your google stuff first, make sure you have a project, its billable, you have sdk installed  
+2) get my code from github and install it as global  
+3) do 'gccli new' and follow instructions  
+4) inside your project , change config for your google project name  
+5) Add a model or 2 with 'gccli generate model'. Ex:  
+```javascript
+'use strict';
+
+module.exports = function(conn) {
+  return {
+    identity: 'users',
+    connection: conn,
+    attributes: {
+      name: 'string',
+    }
+  };
+};
+```  
+6) Deploy: 'gccli deploy api projectname' and wait for it to complete
+7) try calling 'https://{googleproject}.appspot.com/api/users' and you should see something like:
+```javascript
+{"meta":{"totalrecords":0},"users":[]}
+```
+8) There, its working all you need to do is setup your models and db and you can do tons of stuff with it.
+Try making a post, etc.  
+
 ## License
 
-Copyright (c) 2016 Carlos Galveias (www.codethencloud.com)
+Copyright (c) 2016 Carlos Galveias (www.codethencloud.com)  
+Feel free to use it as long as you put in your acknowledgments it comes from www.codethencloud.com :)
 
 -
 
 ## Acknowledgments
-Built using [generator-commader](https://github.com/Hypercubed/generator-commander).  
 Google (for awesome cloud infrastructure)  
 Ember and Ember-data (Inspired on their conventions and the 'ember' way)  
