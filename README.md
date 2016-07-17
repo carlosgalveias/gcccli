@@ -85,6 +85,6 @@ Copyright (c) 2016 Carlos Galveias (www.codethencloud.com)
 -
 
 ## Acknowledgments
-Built using [generator-commader](https://github.com/Hypercubed/generator-commander).
-Google (for awesome cloud infrastructure)
-Ember and Ember-data (Inspired on their conventions and the 'ember' way)
+Built using [generator-commader](https://github.com/Hypercubed/generator-commander).  
+Google (for awesome cloud infrastructure)  
+Ember and Ember-data (Inspired on their conventions and the 'ember' way)  
