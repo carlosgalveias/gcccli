@@ -13,7 +13,8 @@
     "google cloud functions",
     "gae",
     "gcf",
-    "api cli"
+    "api cli",
+    "backend generator"
   ],
   "bugs": {
     "url": "https://github.com/carlosgalveias/gcccli/issues",
