@@ -21,13 +21,13 @@
         "type": "git",
         "url": "https://github.com/carlosgalveias/gcccli"
     },
-    "license": "MIT",
-    "devDependencies": {
+    "dependencies":{
         "autocmdr": "0.0.8",
         "colors": "^1.1.2",
         "commander": "^2.9.0",
         "fs-extra": "^0.30.0",
         "inquirer": "^1.1.2",
         "lodash": "^4.13.1"
-    }
+    },
+    "license": "MIT"
 }

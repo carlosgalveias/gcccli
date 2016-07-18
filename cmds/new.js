@@ -69,7 +69,7 @@ module.exports = function(program) {
 
                 console.log('Creating Base Files'.green);
                 // Copy the root folder with all the generic stuff
-                fs.copySync(path.join(cwd, 'rootfolder'), path.join(cwd, answers.application));
+                fs.copySync(path.join(__dirname,'..', 'rootfolder'), path.join(cwd, answers.application));
                 // Create gccli.json
                 fs.writeFileSync(path.join(cwd, answers.application, 'gccli.json'), JSON.stringify(answers, null, 2));
 
