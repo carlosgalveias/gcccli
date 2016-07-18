@@ -1,33 +1,40 @@
 {
-    "name": "gccli",
-    "version": "0.0.1",
-    "description": "Command line utility to create google could function project",
-    "main": "bin/gccli",
-    "bin": {
-        "gccli": "bin/gccli"
-    },
-    "homepage": "www.codethencloud.com",
-    "keywords": ["google cloud", "google application engine", "google cloud functions", "gae", "gcf", "api cli"],
-    "bugs": {
-        "url": "https://github.com/carlosgalveias/gcccli/issues",
-        "email": "info@codethencloud.com"
-    },
-    "author": {
-        "name": "Carlos Galveias",
-        "email": "info@codethencloud.com",
-        "url": "www.codethencloud.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/carlosgalveias/gcccli"
-    },
-    "dependencies":{
-        "autocmdr": "0.0.8",
-        "colors": "^1.1.2",
-        "commander": "^2.9.0",
-        "fs-extra": "^0.30.0",
-        "inquirer": "^1.1.2",
-        "lodash": "^4.13.1"
-    },
-    "license": "MIT"
+  "name": "gccli",
+  "version": "0.0.2",
+  "description": "Command line utility to create google could function project",
+  "main": "bin/gccli",
+  "bin": {
+    "gccli": "bin/gccli"
+  },
+  "homepage": "www.codethencloud.com",
+  "keywords": [
+    "google cloud",
+    "google application engine",
+    "google cloud functions",
+    "gae",
+    "gcf",
+    "api cli"
+  ],
+  "bugs": {
+    "url": "https://github.com/carlosgalveias/gcccli/issues",
+    "email": "info@codethencloud.com"
+  },
+  "author": {
+    "name": "Carlos Galveias",
+    "email": "info@codethencloud.com",
+    "url": "www.codethencloud.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carlosgalveias/gcccli"
+  },
+  "dependencies": {
+    "autocmdr": "0.0.8",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "fs-extra": "^0.30.0",
+    "inquirer": "^1.1.2",
+    "lodash": "^4.13.1"
+  },
+  "license": "MIT"
 }
