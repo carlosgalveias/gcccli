@@ -12,17 +12,12 @@ A google cloud account with billing activated. Google can give you 3 months free
 For google functions, you need to be part of the alpha to be able to use it.
 This application for the time being requires the google application engine (flexible) for node. To set it up
 please read this:
-https://cloud.google.com/appengine/docs/flexible/nodejs/quickstart
+https://cloud.google.com/appengine/docs/flexible/nodejs/quickstart  
+Please note that this may have some costs after the trial ends , consult google cloud pricing for more info.
 
 ## Install
 
 To install just do "npm install -g gccli":
-
-```
-$ npm install -g gccli
-```
-
-```node ./bin/gccli --help```
 
 ## Configure
 
@@ -40,28 +35,10 @@ Follow gcloud instructions to connect to your account and project.
 
 ## Conventions
 
-If you don't like conventions GET OUT OF HERE!! , just kiddin, fork it and use your own if you want to :)
-
-Folders:  
-* models  // where the db models live, generate by 'gccli generate model'  
-* controllers // controllers is where you put your functions, generate by 'gccli generate controller'  
-* routers // this is where your custom routers will live, generate by 'gccli generate router'  
-* api // the express server api (or google cloud function api in the future)
-
-Note, this application is very oppiniated and insipired by ember-data. The generic route expects models named the same way , etc.
-Model definition follow the sails documentation, it is predefined to use 'memory' as a adapter but you can use mysql, or any other adapter you want
-Models are pluralized, so if you want to handle a photo , the model is 'photos' and that will also be the route.
-
-Routing works like this (ember data way):
-Ex:
-* Find	GET	api/photos/123
-* Find All	GET	api/photos
-* Update	PUT	/api/photos/123
-* Create	POST	api/photos
-* Delete	DELETE	api/photos/123
-
-Routes are already generically handled but can be overrided, the naming format needs to be '{routename.js}' and '{routename-id.js}'.  
-Functions can be either http or by pub/sub topic. http funcitons are named as 'http-{functionname}' and others as 'pub-{functionname}'.  
+### Routers
+There is a generic router that handles all CRUD operations for your models inspired by ember-data.
+If you require additional process generate a router for that model using 'gccli generate router'. It will create '{routename.js}' and '{routename-id.js}'.  
+Inside the generated template you will find example on how to reuse all or part of the generic methods.
 
 Response will be in JSON format, ex:
 
@@ -83,6 +60,31 @@ Response will be in JSON format, ex:
   }]
 }
 ```
+
+### Models
+This application uses waterline/sails ORM so models use their configuration, see http://sailsjs.org/documentation/concepts/models-and-orm/models for more information.  
+
+###Folders:  
+* models  // where the db models live, generate by 'gccli generate model'  
+* controllers // controllers is where you put your functions, generate by 'gccli generate controller'  
+* routers // this is where your custom routers will live, generate by 'gccli generate router'  
+* api // the express server api (or google cloud function api in the future)
+
+####Note:  
+Models are pluralized, so if you want to handle a photo , the model is 'photos' and that will also be the route.
+
+Routing works like this (ember data way):
+Ex:
+* Find	GET	api/photos/123
+* Find All	GET	api/photos
+* Update	PUT	/api/photos/123
+* Create	POST	api/photos
+* Delete	DELETE	api/photos/123
+
+### Controllers
+Controllers have a config setting , if you set type to 'function' they will be deployed as a google function.  
+If a function you need to select trigger to either 'topic' or 'http'. 
+
 
 ## Quick Example
 
