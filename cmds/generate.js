@@ -31,7 +31,7 @@ module.exports = function(program) {
         // Lint available options
         switch (item) {
             case 'router':
-            case 'function':
+            case 'controller':
             case 'model':
                 break;
             default:

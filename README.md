@@ -34,23 +34,31 @@ Follow gcloud instructions to connect to your account and project.
 * To create a new project do 'gccli new' and follow instructions.  
   It will create a new folder from where you run the command with the application
 * To generate you can do 'gccli generate <model|route|function> name'
-* To deploy the router do 'gccli deploy api'
+* To deploy the routers do 'gccli deploy api'
 * To deploy a function do 'gccli deploy function <function-name> <trigger>'
 * To deploy all functions do 'gccli deploy functions'
 
 ## Conventions
 
-If you don't like strong conventions GET OUT OF HERE!! , just kiddin.  
-Yes , this application is very oppiniated and insipired by ember-data. The generic route expects models named the same way , etc.
+If you don't like conventions GET OUT OF HERE!! , just kiddin, fork it and use your own if you want to :)
+
+Folders:  
+* models  // where the db models live, generate by 'gccli generate model'  
+* controllers // controllers is where you put your functions, generate by 'gccli generate controller'  
+* routers // this is where your custom routers will live, generate by 'gccli generate router'  
+* api // the express server api (or google cloud function api in the future)
+
+Note, this application is very oppiniated and insipired by ember-data. The generic route expects models named the same way , etc.
+Model definition follow the sails documentation, it is predefined to use 'memory' as a adapter but you can use mysql, or any other adapter you want
 Models are pluralized, so if you want to handle a photo , the model is 'photos' and that will also be the route.
 
+Routing works like this (ember data way):
 Ex:
 * Find	GET	api/photos/123
 * Find All	GET	api/photos
 * Update	PUT	/api/photos/123
 * Create	POST	api/photos
 * Delete	DELETE	api/photos/123
-
 
 Routes are already generically handled but can be overrided, the naming format needs to be '{routename.js}' and '{routename-id.js}'.  
 Functions can be either http or by pub/sub topic. http funcitons are named as 'http-{functionname}' and others as 'pub-{functionname}'.  
@@ -81,7 +89,7 @@ Response will be in JSON format, ex:
 1) set up your google stuff first, make sure you have a project, its billable, you have sdk installed  
 2) get my code from github and install it as global  
 3) do 'gccli new' and follow instructions  
-4) inside your project , change config for your google project name  
+4) inside your project , change config for your google project id and bucket where you want to store any functions 
 5) Add a model or 2 with 'gccli generate model'. Ex:  
 ```javascript
 'use strict';
@@ -96,13 +104,16 @@ module.exports = function(conn) {
   };
 };
 ```  
-6) Deploy: 'gccli deploy api projectname' and wait for it to complete
-7) try calling 'https://{googleproject}.appspot.com/api/users' and you should see something like:
+6) Deploy: 'gccli deploy api' and wait for it to complete
+7) try calling 'https://{googleproject}.appspot.com/api/{model}' and you should see something like:
 ```javascript
-{"meta":{"totalrecords":0},"users":[]}
+{"meta":{"totalrecords":0},"{model}":[]}
 ```
 8) There, its working all you need to do is setup your models and db and you can do tons of stuff with it.
 Try making a post, etc.  
+9) To add a google function do 'gccli generate controller' and follow instructions
+10) to deploy the functions do 'gccli deploy controllers'
+
 
 ## License
 

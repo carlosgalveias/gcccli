@@ -5,28 +5,35 @@
 var cwd = process.cwd();
 var path = require('path');
 var fs = require('fs-extra');
-try{
-var cfg = require(path.join(cwd, 'config/config.js'))().google;
-} catch(e){
-  //
+try {
+    var cfg = require(path.join(cwd, 'config/config.js'))().google;
+} catch (e) {
+    //
 }
 var execSync = require('child_process').execSync;
 require('colors');
 module.exports = function(program) {
     program
-        .command('deploy <item> <name>')
+        .command('deploy <item>')
         .version('0.0.0')
         .description('Deploys your code to google')
         .action(function(item) {
-            if (item === 'functions') {
-                fs.readdirSync(path.join(cwd, 'functions')).forEach(function(file) {
+            if (item === 'controllers') {
+                fs.readdirSync(path.join(cwd, 'controllers')).forEach(function(file) {
                     var module = file.replace('.js', '');
-                    console.log('Deploying ' + module);
-                    var cmd = 'gcloud alpha functions deploy ' + module + ' --bucket ' + cfg.google.bucket + ' --trigger-topic ' + module;
-                    execSync(cmd);
+                    console.log('Deploying controller \'' + module + '\'');
+                    let config = require(path.join(cwd, 'controllers', file)).config;
+                    let cmd = 'gcloud alpha functions deploy ' + module + ' --bucket ' + cfg.bucket;
+                    if (config.type === 'function') {
+                        if (config.trigger === 'topic') {
+                            cmd += ' --trigger-topic ' + module;
+                        } else {
+                            cmd += ' --trigger-http';
+                        }
+                        execSync(cmd);
+                    }
                     console.log('Done');
                 });
-
             } else if (item === 'api') {
                 console.log(cfg);
                 if (!cfg.project) {

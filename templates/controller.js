@@ -1,12 +1,19 @@
 'use strict';
 /*
- Template function
+ Template controller
  */
 
+// Controller setting
+var config = {
+    type: 'function', // function for gcf
+    trigger: '' // http or topic
+};
 
 var models = require('../models');
 var db = { models: [], connections: [] };
 
+// In case you want to access your db and models from the function 
+// here we import that stuff
 models.waterline.initialize(models.config, function(err, models) {
     if (err) {
         throw err;
@@ -15,8 +22,10 @@ models.waterline.initialize(models.config, function(err, models) {
     db.connections = models.connections;
 });
 
+// function
 var templatename = function(req, res) {
     res.status(200).send('Ok');
 };
 
 module.exports = templatename;
+module.exports.config = config;
