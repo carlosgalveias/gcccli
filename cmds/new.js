@@ -69,7 +69,7 @@ module.exports = function(program) {
 
                 console.log('Creating Base Files'.green);
                 // Copy the root folder with all the generic stuff
-                fs.copySync(path.join(__dirname,'..', 'rootfolder'), path.join(cwd, answers.application));
+                fs.copySync(path.join(__dirname, '..', 'rootfolder'), path.join(cwd, answers.application));
                 // Create gccli.json
                 fs.writeFileSync(path.join(cwd, answers.application, 'gccli.json'), JSON.stringify(answers, null, 2));
 
@@ -80,7 +80,8 @@ module.exports = function(program) {
                     description: answers.applicationDescription,
                     private: true,
                     scripts: {
-                        test: 'node node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- routers/**/*.spec.js functions/**/*.spec.js',
+                        test: 'node ./node_modules/mocha/bin/mocha test --recursive',
+                        coverage: 'node node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha -- -- test/**/*.spec.js',
                         start: 'node api/gae_api.js',
                     },
                     author: {
