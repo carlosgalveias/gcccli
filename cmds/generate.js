@@ -5,6 +5,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const inquirer = require('inquirer');
+const pluralize = require('pluralize');
 
 /**
  * Commander function
@@ -21,6 +22,7 @@ module.exports = function(program) {
      * @return {Void}
      */
     let create = function(item, name) {
+        name = pluralize(name);
         // ensure dir
         fs.ensureDirSync(`./${item}s`);
         // check if file exists
@@ -42,6 +44,11 @@ module.exports = function(program) {
         let template = fs.readFileSync(path.join(__dirname, '..', 'templates', `${item}.js`), 'utf8');
         // replace values
         template = template.replace(/templatename/g, name);
+
+        // controllers may have any name but models and routers need to be pluralized
+        if (item !== 'controller') {
+            name = pluralize(name);
+        }
 
         if (item === 'router') {
             fs.writeFileSync(`./${item}s/${name}-id.js`, template, 'utf8');
