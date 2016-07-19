@@ -25,7 +25,7 @@ module.exports = function(program) {
                     let config = require(path.join(cwd, 'controllers', file)).config;
                     let cmd = 'gcloud alpha functions deploy ' + module + ' --bucket ' + cfg.bucket;
                     if (config.type === 'function') {
-                        if (config.trigger === 'topic') {
+                        if (config.trigger && config.trigger === 'topic') {
                             cmd += ' --trigger-topic ' + module;
                         } else {
                             cmd += ' --trigger-http';

@@ -83,7 +83,7 @@ Ex:
 
 ### Controllers
 Controllers have a config setting , if you set type to 'function' they will be deployed as a google function.  
-If a function you need to select trigger to either 'topic' or 'http'. 
+For functions please also specify the trigger to either 'topic' or 'http'. 
 
 
 ## Quick Example
@@ -107,14 +107,14 @@ module.exports = function(conn) {
   };
 };
 ```  
-6) Deploy: 'gccli deploy api' and wait for it to complete
+6) Deploy: 'gccli deploy api' and wait for it to complete  
 7) try calling 'https://{googleproject}.appspot.com/api/{model}' and you should see something like:
 ```javascript
 {"meta":{"totalrecords":0},"{model}":[]}
 ```
 8) There, its working all you need to do is setup your models and db and you can do tons of stuff with it.
 Try making a post, etc.  
-9) To add a google function do 'gccli generate controller' and follow instructions
+9) To add a google function do 'gccli generate controller' and follow instructions.  
 10) to deploy the functions do 'gccli deploy controllers'
 
 
@@ -127,4 +127,4 @@ Feel free to use it as long as you put in your acknowledgments it comes from www
 
 ## Acknowledgments
 Google (for awesome cloud infrastructure)  
-Ember and Ember-data (Inspired on their conventions and the 'ember' way)  
+Ember, Ember-cli and Ember-data (Inspired on their conventions and the 'ember' way)  
