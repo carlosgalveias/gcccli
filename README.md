@@ -86,7 +86,8 @@ Response will be in JSON format, ex:
 
 ## Quick Example
 
-1) set up your google stuff first, make sure you have a project, its billable, you have sdk installed  
+1) set up your google stuff first, make sure you have a project, its billable, you have sdk installed and if you
+want to use functions if you have them enabled   
 2) get my code from github and install it as global  
 3) do 'gccli new' and follow instructions  
 4) inside your project , change config for your google project id and bucket where you want to store any functions 
