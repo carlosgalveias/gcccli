@@ -2,33 +2,30 @@
 
 ## Description
 
-#####Google Cloud Cli 
-Modern web applications require a good backend/api and there are tons of options out there. This tool creates a project that will create serverless/scalable backends using a combination of GAE(Google Application Engine)/GCF (Google Cloud Functions)
-The purpose of the application is to take care of all the boring stuff and generate a project under certain standertized conventions that will make generation, deploying and developing a breeze. It sure saves me from writing a lot of stuff every time ;)
+#####Google Cloud Cli
+I have many web based applications that require a api, mysql database (or other) and since i'm too lazy and don't want to write the same code over and over again i made this small cli utility to bootstrap my backend when i start a new project.  
+So this utility will create the folders under some conventions, initialize git, already have waterline ORM set up and a generic CRUD api.  
+It handles generation of routers, controllers and models with predefined templates and it makes easy to deploy to  to GAE and GCF (if you'r part of the Alfa).
 
 ## Requirements
 
-A google cloud account with billing activated. Google can give you 3 months free with 300$ in services. Try it.
-For google functions, you need to be part of the alpha to be able to use it.
-This application for the time being requires the google application engine (flexible) for node. To set it up
-please read this:
-https://cloud.google.com/appengine/docs/flexible/nodejs/quickstart  
-Please note that this may have some costs after the trial ends , consult google cloud pricing for more info.
+* A google cloud account with billing activated (they have a awesome free trial)
+* For google functions , you need to be part of the Alpha but you can use the controllers from GAE if you want
+* A active project in your google cloud account
+* Google could SDK installed and set up
+* Node
+
+GAE with node currently uses the flexible version of GAE, and this may have some costs after the trial. Consult google cloud pricing for more info.
 
 ## Install
 
 To install just do "npm install -g gccli":
 
-## Configure
-
-On your project/config folder you can set all your configuration settings for database/etc.
-Follow gcloud instructions to connect to your account and project.
-
 ## Usage
 
 * To create a new project do 'gccli new' and follow instructions.  
   It will create a new folder from where you run the command with the application
-* To generate you can do 'gccli generate <model|route|controller> name'
+* To generate you can do 'gccli generate {model|router|controller}'
 * To deploy the routers do 'gccli deploy api'
 * To deploy all functions do 'gccli deploy controllers'
 
@@ -60,7 +57,7 @@ Response will be in JSON format, ex:
 }
 ```
 
-### Models
+###Models
 This application uses waterline/sails ORM so models use their configuration, see http://sailsjs.org/documentation/concepts/models-and-orm/models for more information.  
 
 ###Folders:  
@@ -84,12 +81,16 @@ Ex:
 Controllers have a config setting , if you set type to 'function' they will be deployed as a google function.  
 For functions please also specify the trigger to either 'topic' or 'http'. 
 
+## Configure
+
+On your project/config folder you can set all your configuration settings for database/etc.
+Follow gcloud instructions to connect to your account and project.
 
 ## Quick Example
 
 1) set up your google stuff first, make sure you have a project, its billable, you have sdk installed and if you
 want to use functions if you have them enabled   
-2) get my code from github and install it as global  
+2) do "npm install -g gccli"
 3) do 'gccli new' and follow instructions  
 4) inside your project , change config for your google project id and bucket where you want to store any functions 
 5) Add a model or 2 with 'gccli generate model'. Ex:  
@@ -120,7 +121,7 @@ Try making a post, etc.
 ## License
 
 Copyright (c) 2016 Carlos Galveias (www.codethencloud.com)  
-Feel free to use it as long as you put in your acknowledgments it comes from www.codethencloud.com :)
+Feel free to use it, a link to my site would be nice :)
 
 -
 
