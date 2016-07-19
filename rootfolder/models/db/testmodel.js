@@ -2,7 +2,7 @@
 
 module.exports = function(conn) {
     return {
-        identity: 'testmodule',
+        identity: 'testmodel',
         connection: conn,
         attributes: {
             name: 'string',

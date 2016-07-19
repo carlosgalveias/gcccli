@@ -50,7 +50,7 @@ module.exports = {
     get: function(req, res) {
         var table = req.params['0']; // route called corresponds to the table as a convention
         var id = req.params.id; // Id if any
-        console.log('Initializing db for table ' + table);
+        
         var db = orm.waterline.collections[table]; // get the table
 
         // here we get the relationships of this object for auto populate
@@ -59,7 +59,7 @@ module.exports = {
         var populations = collections.filter(function(i) {
             return attributes.indexOf(i) > -1;
         });
-        console.log('Configured relationships');
+        
 
 
         var filter = id ? { id: id } : req.query;

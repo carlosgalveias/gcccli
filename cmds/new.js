@@ -81,7 +81,7 @@ module.exports = function(program) {
                     private: true,
                     scripts: {
                         test: 'node ./node_modules/mocha/bin/mocha test --recursive',
-                        coverage: 'node node_modules/istanbul/lib/cli.js cover node_modules/.bin/_mocha -- -- test/**/*.spec.js',
+                        coverage: 'node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -- test/**/*.js',
                         start: 'node api/gae_api.js',
                     },
                     author: {

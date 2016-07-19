@@ -3,9 +3,11 @@
 ## Description
 
 #####Google Cloud Cli
+
 I have many web based applications that require a api, mysql database (or other) and since i'm too lazy and don't want to write the same code over and over again i made this small cli utility to bootstrap my backend when i start a new project.  
 So this utility will create the folders under some conventions, initialize git, already have waterline ORM set up and a generic CRUD api.  
 It handles generation of routers, controllers and models with predefined templates and it makes easy to deploy to  to GAE and GCF (if you'r part of the Alfa).
+It also supports testing using 'mocha' and coverage using 'istanbul'. 
 
 ## Requirements
 
@@ -117,6 +119,9 @@ Try making a post, etc.
 9) To add a google function do 'gccli generate controller' and follow instructions.  
 10) to deploy the functions do 'gccli deploy controllers'
 
+## Tests
+
+Tests are included in your created project, to run test do 'npm test'. It also supports coverage using istanbul, to run do 'npm run coverage'
 
 ## License
 
