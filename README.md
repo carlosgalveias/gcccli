@@ -25,7 +25,7 @@ To install just do "npm install -g gccli":
 
 * To create a new project do 'gccli new' and follow instructions.  
   It will create a new folder from where you run the command with the application
-* To generate you can do 'gccli generate <model|route|controller> name'
+* To generate you can do 'gccli generate {model|route|controller}'
 * To deploy the routers do 'gccli deploy api'
 * To deploy all functions do 'gccli deploy controllers'
 
