@@ -9,12 +9,13 @@ It handles generation of routers, controllers and models with predefined templat
 
 ## Requirements
 
-A google cloud account with billing activated. Google can give you 3 months free with 300$ in services. Try it.
-For google functions, you need to be part of the alpha to be able to use it.
-This application for the time being requires the google application engine (flexible) for node. To set it up
-please read this:
-https://cloud.google.com/appengine/docs/flexible/nodejs/quickstart  
-Please note that this may have some costs after the trial ends , consult google cloud pricing for more info.
+* A google cloud account with billing activated (they have a awesome free trial)
+* For google functions , you need to be part of the Alpha but you can use the controllers from GAE if you want
+* A active project in your google cloud account
+* Google could SDK installed and set up
+* Node
+
+GAE with node currently uses the flexible version of GAE, and this may have some costs after the trial. Consult google cloud pricing for more info.
 
 ## Install
 
@@ -56,7 +57,7 @@ Response will be in JSON format, ex:
 }
 ```
 
-### Models
+###Models
 This application uses waterline/sails ORM so models use their configuration, see http://sailsjs.org/documentation/concepts/models-and-orm/models for more information.  
 
 ###Folders:  
