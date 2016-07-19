@@ -1,6 +1,6 @@
 {
   "name": "gccli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Command line utility to create google could function project",
   "main": "bin/gccli",
   "bin": {
