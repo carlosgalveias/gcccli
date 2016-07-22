@@ -14,13 +14,18 @@ var db = { models: [], connections: [] };
 
 // In case you want to access your db and models from the function 
 // here we import that stuff
-models.waterline.initialize(models.config, function(err, models) {
-    if (err) {
-        throw err;
-    }
+if (!models.waterline.connections) {
+    models.waterline.initialize(models.config, function(err, models) {
+        if (err) {
+            throw err;
+        }
+        db.models = models.collections;
+        db.connections = models.connections;
+    });
+} else {
     db.models = models.collections;
     db.connections = models.connections;
-});
+}
 
 // function
 var templatename = function(req, res) {

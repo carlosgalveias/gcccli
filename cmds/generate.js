@@ -42,6 +42,7 @@ module.exports = function(program) {
 
         // read template
         let template = fs.readFileSync(path.join(__dirname, '..', 'templates', `${item}.js`), 'utf8');
+
         // replace values
         template = template.replace(/templatename/g, name);
 
@@ -51,13 +52,20 @@ module.exports = function(program) {
         }
 
         if (item === 'router') {
+            let test = fs.readFileSync(path.join(__dirname, '..', 'templates', `test-${item}-id.js`), 'utf8');
+            test = test.replace(/templatename/g, name);
             fs.writeFileSync(`./${item}s/${name}-id.js`, template, 'utf8');
+            fs.writeFileSync(`./test/${item}s/${name}-id.js`, test, 'utf8');
+
         }
 
         if (item === 'model') {
             fs.writeFileSync(`./${item}s/db/${name}.js`, template, 'utf8');
         } else {
+            let test = fs.readFileSync(path.join(__dirname, '..', 'templates', `test-${item}.js`), 'utf8');
+            test = test.replace(/templatename/g, name);
             fs.writeFileSync(`./${item}s/${name}.js`, template, 'utf8');
+            fs.writeFileSync(`./test/${item}s/${name}.js`, test, 'utf8');
         }
 
 

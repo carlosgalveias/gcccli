@@ -10,8 +10,6 @@ require('autocmdr/lib/package')(program);
 require('autocmdr/lib/config')(program);
 require('autocmdr/lib/help')(program);
 
-
-console.log(require(__dirname + '/cl'));
 program
 	.parse(process.argv);
 
