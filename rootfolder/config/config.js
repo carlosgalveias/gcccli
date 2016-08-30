@@ -2,10 +2,6 @@
 
 module.exports = function() {
     return {
-        api: {
-          port: 8080,
-          type: 'gae' // for now google does not support routing so only gae is possible for the api 
-        },
         db: {
             adapter: 'sails-memory',
             server: '0.0.0.0',
@@ -16,8 +12,10 @@ module.exports = function() {
             migrate: 'safe'
         },
         google: {
-          project: '',
-          bucket: ''
+            project: '', // project to set
+            bucket: '', //bucket where functions are saved
+            apiType: 'gcf', // gae (Google Application Engine) or gcf (Google Cloud Functions (default))
+            apiGaePort: 8080 // for GAE alone
         }
     };
 };

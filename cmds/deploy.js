@@ -58,7 +58,11 @@ module.exports = function(program) {
                         process.chdir(path.join(cwd, 'dist'));
                         console.log('Deploying...');
                         execSync('gcloud config set project ' + cfg.project);
-                        execSync('gcloud app deploy');
+                        if (cfg.apiType === 'gae') {
+                            execSync('gcloud app deploy');
+                        } else {
+                            execSync('gcloud alpha functions deploy api --bucket ' + cfg.bucket + ' --trigger-http');
+                        }
                         console.log('Done'.green);
                         process.chdir(cwd);
                     });
