@@ -11,10 +11,11 @@ if (apicfg.apiType === 'gcf') {
     exp.api = fn;
 }
 
-fs.readdirSync(path.join(__dirname, 'functions')).forEach(function(file) {
-    var fn = require(path.join(__dirname, 'functions', file));
-    var module = file.replace('.js', '');
-    exp[module] = fn;
-});
-
+if (fs.existsSync(path.join(__dirname, 'controllers'))) {
+    fs.readdirSync(path.join(__dirname, 'controllers')).forEach(function(file) {
+        var fn = require(path.join(__dirname, 'controllers', file));
+        var module = file.replace('.js', '');
+        exp[module] = fn;
+    });
+}
 module.exports = exp;

@@ -36,7 +36,7 @@ if (!models.waterline.connections) {
 }
 
 
-var port = cfg.api.port; // set our port
+var port = cfg.google.apiGaePort; // set our port
 
 // ROUTES FOR OUR API
 // =============================================================================
