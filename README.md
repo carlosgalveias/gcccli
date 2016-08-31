@@ -115,7 +115,7 @@ Follow gcloud instructions to connect to your account and project.
 
 1) set up your google stuff first, make sure you have a project, its billable, you have sdk installed and if you
 want to use functions if you have them enabled   
-2) do "npm install -g gccli"
+2) do "npm install -g gccli"  
 3) do 'gccli new' and follow instructions  
 4) inside your project , change config for your google project id and bucket where you want to store any functions 
 5) Add a model or 2 with 'gccli generate model'. Ex:  
@@ -140,7 +140,9 @@ module.exports = function(conn) {
 8) There, its working all you need to do is setup your models and db and you can do tons of stuff with it.
 Try making a post, etc.  
 9) To add a google function do 'gccli generate controller' and follow instructions.  
-10) to deploy the functions do 'gccli deploy controllers'
+10) to deploy the functions do 'gccli deploy controllers'  
+
+ORM is by default set up to use 'sails-memory' so you dont need a db setup to try it out.
 
 ## Tests
 
