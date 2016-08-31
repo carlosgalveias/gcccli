@@ -1,20 +1,22 @@
-#gccli (Work In Progress)
+#gccli
 
 ## Description
 
 #####Google Cloud Cli
 
 I have many web based applications that require a api, mysql database (or other) and since i'm too lazy and don't want to write the same code over and over again i made this small cli utility to bootstrap my backend when i start a new project.  
-So this utility will create the folders under some conventions, initialize git, already have waterline ORM set up and a generic CRUD api.  
+So this utility will create the folders under some conventions, initialize git, already have waterline ORM set up and a standard JSON CRUD api.  
 It handles generation of routers, controllers and models with predefined templates and it makes easy to deploy to  to GAE and GCF (if you'r part of the Alfa).
-It also supports testing using 'mocha' and coverage using 'istanbul'. 
+It also supports testing using 'mocha' and coverage using 'istanbul'.
 
 ## Requirements
 
+Altough you dont actually need google, as this will generate a compatible node express server with full api set up, it was designed to be used with google cloud.  
+So to use with google, you will need:  
 * A google cloud account with billing activated (they have a awesome free trial)
-* For google functions , you need to be part of the Alpha but you can use the controllers from GAE if you want
+* For google functions , you need to be part of the Alpha and enable Functions API. If you are not part of the Alpha, you can still use GAE if you want.
 * A active project in your google cloud account
-* Google could SDK installed and set up
+* Google cloud SDK installed and set up
 * Node
 
 GAE with node currently uses the flexible version of GAE, and this may have some costs after the trial. Consult google cloud pricing for more info.
@@ -34,7 +36,7 @@ To install just do "npm install -g gccli":
 ## Conventions
 
 ### Routers
-There is a generic router that handles all CRUD operations for your models inspired by ember-data.
+There is a generic router , that handles all CRUD operations for your models inspired by ember-data.
 If you require additional process generate a router for that model using 'gccli generate router'. It will create '{routename.js}' and '{routename-id.js}'.  
 Inside the generated template you will find example on how to reuse all or part of the generic methods.
 
@@ -66,7 +68,7 @@ This application uses waterline/sails ORM so models use their configuration, see
 * models  // where the db models live, generate by 'gccli generate model'  
 * controllers // controllers is where you put your functions, generate by 'gccli generate controller'  
 * routers // this is where your custom routers will live, generate by 'gccli generate router'  
-* api // the express server api (or google cloud function api in the future)
+* api // the express/gcf server api, by default it will use the google cloud function API but you can set it up for GAE. See config/config.js for more options
 
 ####Note:  
 Models are pluralized, so if you want to handle a photo , the model is 'photos' and that will also be the route.
@@ -81,7 +83,28 @@ Ex:
 
 ### Controllers
 Controllers have a config setting , if you set type to 'function' they will be deployed as a google function.  
-For functions please also specify the trigger to either 'topic' or 'http'. 
+For functions please also specify the trigger to either 'topic' or 'http'. Example controller code:  
+
+```javascript
+'use strict';
+/*
+ Template controller
+ */
+
+// Controller setting
+var config = {
+    type: 'function', // only functions are deployed as GCF. For other purposes just require it
+    trigger: 'http' // http or pub
+};
+
+var myfunction = function(req, res) {
+    res.status(200).send('Ok');
+};
+
+module.exports = myfunction;
+module.exports.config = config;
+
+```  
 
 ## Configure
 
@@ -110,7 +133,7 @@ module.exports = function(conn) {
 };
 ```  
 6) Deploy: 'gccli deploy api' and wait for it to complete  
-7) try calling 'https://{googleproject}.appspot.com/api/{model}' and you should see something like:
+7) try calling 'https://{region}-{project}.cloudfunctions.net/api/{model}' (GCF) or 'https://{googleproject}.appspot.com/api/{model}' (GAE) and you should see something like:
 ```javascript
 {"meta":{"totalrecords":0},"{model}":[]}
 ```
@@ -121,7 +144,7 @@ Try making a post, etc.
 
 ## Tests
 
-Tests are included in your created project, to run test do 'npm test'. It also supports coverage using istanbul, to run do 'npm run coverage'
+Tests are originally included in your created project, to run test do 'npm test'. It also supports coverage using istanbul, to run do 'npm run coverage'
 
 ## License
 
