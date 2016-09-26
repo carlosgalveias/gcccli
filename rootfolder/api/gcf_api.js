@@ -11,32 +11,6 @@ models.waterline.initialize(models.config, function(err, models) {
     db.models = models.collections;
     db.connections = models.connections;
 });
-'use strict';
-var models = require('../models');
-var path = require('path');
-
-var db = { models: [], connections: [] };
-
-models.waterline.initialize(models.config, function(err, models) {
-    if (err) {
-        throw err;
-    }
-    db.models = models.collections;
-    db.connections = models.connections;
-});
-'use strict';
-var models = require('../models');
-var path = require('path');
-
-var db = { models: [], connections: [] };
-
-models.waterline.initialize(models.config, function(err, models) {
-    if (err) {
-        throw err;
-    }
-    db.models = models.collections;
-    db.connections = models.connections;
-});
 
 var api = function(req, res) {
     // Headers

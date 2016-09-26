@@ -1,1 +1,1 @@
-the google cloud functions should be here
+// the google cloud functions should be here
