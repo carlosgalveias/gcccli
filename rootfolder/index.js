@@ -2,7 +2,7 @@
 var fs = require('fs');
 var path = require('path');
 var exp = {};
-var apicfg = require('config/config.js')().google;
+var apicfg = require(path.join(__dirname,'config/config.js'))().google;
 // Reads all functions and exports them. Required for google functions as it reads
 // index.js
 
