@@ -23,7 +23,7 @@ module.exports = function(program) {
                     var module = file.replace('.js', '');
                     console.log('Deploying controller \'' + module + '\'');
                     let config = require(path.join(cwd, 'controllers', file)).config;
-                    let cmd = 'gcloud alpha functions deploy ' + module + ' --bucket ' + cfg.bucket;
+                    let cmd = 'gcloud alpha functions deploy ' + module + ' --stage-bucket ' + cfg.bucket;
                     if (config.type === 'function') {
                         if (config.trigger && config.trigger === 'topic') {
                             cmd += ' --trigger-topic ' + module;
@@ -61,7 +61,7 @@ module.exports = function(program) {
                         if (cfg.apiType === 'gae') {
                             execSync('gcloud app deploy');
                         } else {
-                            execSync('gcloud alpha functions deploy api --bucket ' + cfg.bucket + ' --trigger-http');
+                            execSync('gcloud alpha functions deploy api --stage-bucket ' + cfg.bucket + ' --trigger-http');
                         }
                         console.log('Done'.green);
                         process.chdir(cwd);
