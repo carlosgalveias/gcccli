@@ -22,16 +22,18 @@ var api = function(req, res) {
         res.send();
     }
 
-    var component = req.params['0'].replace(/\/[\s\S]*/, '');
-    var id = req.params['0'].match(/\/.*/);
+    var params = req.params['0'].replace(/^\//, ''); // params start with '/'
+    params = params.split('/');
+    var component = params[0] ? params[0] : null;
+    var id = params[1] ? params[1] : null;
+
+    if (!component) {
+        return res.status(500).send('No route specified');
+    }
+
     var method = req.method.toLowerCase();
     var model;
 
-
-    // for express compatibility
-    if (id) {
-        id = id[0].replace('/', '');
-    }
     req.params.id = id;
     req.params['0'] = component;
 
@@ -49,7 +51,6 @@ var api = function(req, res) {
         console.log(err);
         res.status(500).send(err);
     }
-
 };
 
 module.exports = api;
