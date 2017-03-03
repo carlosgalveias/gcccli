@@ -32,16 +32,15 @@ module.exports = function(program) {
                 let cwd = process.cwd();
                 console.log('Resetting Base Files'.green);
                 // Copy the root folder with all the generic stuff
-                fs.copySync(path.join(__dirname, '..', 'rootfolder/api/gae_api.js'), path.join(cwd, 'api'), function(err) {
-                    console.log(err);
-                });
-                fs.copySync(path.join(__dirname, '..', 'rootfolder/api/gcf_api.js'), path.join(cwd, 'api'), function(err) {
-                    console.log(err);
-                });
-                fs.copySync(path.join(__dirname, '..', 'rootfolder/index.js'), cwd, function(err) {
-                    console.log(err);
-                });
-                console.log('Complete!'.green);
+                try {
+                    fs.copySync(path.join(__dirname, '..', 'rootfolder/api'), path.join(cwd, 'api'));
+                    fs.copySync(path.join(__dirname, '..', 'rootfolder/routers/generic.js'), path.join(cwd, 'routers/generic.js'));
+                    fs.copySync(path.join(__dirname, '..', 'rootfolder/models/index.js'), path.join(cwd, 'models/index.js'));
+                    fs.copySync(path.join(__dirname, '..', 'rootfolder/index.js'), path.join(cwd, 'index.js'));
+                    console.log('Complete!'.green);
+                } catch (e) {
+                    console.error('Error! ' + e);
+                }
             });
         });
 };
